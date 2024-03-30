@@ -22,25 +22,26 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+/**
+ * Composable that display a movie's name and movie director
+ *
+ * @param movieName is the resource ID for the string of the movie name
+ * @param movieDirector is the resource ID for the string of the movie director
+ * @param modifier modifier to set to this composable
+ */
+
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     MovieClubTheme {
-        Greeting("Android")
+
     }
 }
