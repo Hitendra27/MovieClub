@@ -22,7 +22,7 @@ The Movie Club Android app is built using Jetpack Compose and Material Theme Bui
 Clone the repository:
 bash
 Copy code
-git clone https://github.com/your_username/movie-club-android.git
+git clone https://github.com/Hitendra27/MovieClub
 Open the project in Android Studio.
 
 ## Build and run the project on an Android emulator or physical device.
