@@ -28,7 +28,9 @@ Open the project in Android Studio.
 ## Build and run the project on an Android emulator or physical device.
 
 ## Contributors
-Hitendra Quessou (https://github.com/Hitendra27)
+<a href="https://github.com/Hitendra27" target="_blank">
+Hitendra Quessou
+</a>
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
