@@ -42,5 +42,5 @@ val movies = listOf(
     Movie(R.drawable.gone_girl, R.string.movie_28, R.string.movie_28_dir, R.string.movie_28_plot),
     Movie(R.drawable.cathmeifyoucan, R.string.movie_29, R.string.movie_29_dir, R.string.movie_29_plot),
     Movie(R.drawable.killbill, R.string.movie_30, R.string.movie_30_dir, R.string.movie_30_plot),
-    Movie(R.drawable.thething, R.string.movie_31, R.string.movie_31_dir, R.string.movie_31_plot),
+    Movie(R.drawable.thething, R.string.movie_31, R.string.movie_31_dir, R.string.movie_31_plot)
 )
