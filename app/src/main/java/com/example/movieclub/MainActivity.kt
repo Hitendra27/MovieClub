@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,9 +51,14 @@ class MainActivity : ComponentActivity() {
  */
 @Composable
 fun MovieClubApp() {
-    LazyColumn {
-        items(movies) {
-            MovieItem(movie = it)
+    Scaffold { it ->
+        LazyColumn(contentPadding = it) {
+            items(movies) {
+                MovieItem(
+                    movie = it,
+                    modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
+                )
+            }
         }
     }
 }
@@ -67,13 +74,15 @@ fun MovieItem(
     movie: Movie,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(dimensionResource(R.dimen.padding_small))
-    ) {
-        MovieInformation(movie.movieName, movie.movieDir)
-        MoviePoster(movie.imageResourceId)
+    Card(modifier = modifier) {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(R.dimen.padding_small))
+        ) {
+            MovieInformation(movie.movieName, movie.movieDir)
+            MoviePoster(movie.imageResourceId)
+        }
     }
 }
 
@@ -93,7 +102,7 @@ fun MoviePoster(
         contentDescription = null,
         modifier = Modifier
             .fillMaxWidth()
-            .height(194.dp),
+            .height(218.dp),
         contentScale = ContentScale.FillBounds
     )
 
@@ -122,8 +131,16 @@ fun MovieInformation(
 }
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    MovieClubTheme(darkTheme = false) {
+fun MovieClubAppPreview() {
+    MovieClubTheme(useDarkTheme = false) {
+        MovieClubApp()
+    }
+}
+
+@Preview
+@Composable
+fun MovieClubAppDarkThemePreview() {
+    MovieClubTheme(useDarkTheme = true) {
         MovieClubApp()
     }
 }
