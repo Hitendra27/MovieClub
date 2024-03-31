@@ -76,11 +76,15 @@ fun MovieItem(
 ) {
     Card(modifier = modifier) {
         Column(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(dimensionResource(R.dimen.padding_small))
+//            modifier = modifier
+//                .fillMaxWidth()
+                //.padding(dimensionResource(R.dimen.padding_small))
         ) {
-            MovieInformation(movie.movieName, movie.movieDir)
+            MovieInformation(
+                movie.movieName,
+                movie.movieDir,
+                modifier = modifier
+                    .padding(dimensionResource(R.dimen.padding_small)))
             MoviePoster(movie.imageResourceId)
         }
     }
