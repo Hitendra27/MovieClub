@@ -94,4 +94,5 @@
    <string name="movie_31_dir">John Carpenter</string>
    <string name="movie_31_plot">A research team in Antarctica is hunted by a shape-shifting alien that assumes the appearance of its victims.</string>
     <string name="movie_plot">Plot: </string>
+    <string name="movie_topapp_bar">FILM CLUB</string>
 </resources>
