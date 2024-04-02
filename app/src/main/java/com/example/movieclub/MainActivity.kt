@@ -4,11 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -35,6 +34,14 @@ import androidx.compose.ui.unit.dp
 import com.example.movieclub.data.Movie
 import com.example.movieclub.data.movies
 import com.example.movieclub.ui.theme.MovieClubTheme
+import androidx.annotation.StringRes
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,19 +120,66 @@ fun MovieItem(
     movie: Movie,
     modifier: Modifier = Modifier
 ) {
+    var expanded by remember {
+        mutableStateOf(false)
+    }
     Card(modifier = modifier) {
         Column(
-//            modifier = modifier
-//                .fillMaxWidth()
-                //.padding(dimensionResource(R.dimen.padding_small))
+            modifier = Modifier
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioNoBouncy,
+                        stiffness = Spring.StiffnessMedium
+                    )
+                )
         ) {
             MovieInformation(
                 movie.movieName,
                 movie.movieDir,
                 modifier = modifier
-                    .padding(dimensionResource(R.dimen.padding_small)))
-            MoviePoster(movie.imageResourceId)
+                    .padding(dimensionResource(R.dimen.padding_small))
+            )
+            MoviePoster(
+                moviePoster = movie.imageResourceId,
+                expanded = expanded,
+                onClick = { expanded = !expanded }
+            )
+
+            if (expanded) {
+                MoviePlot(
+                    moviePlot = movie.moviePlot,
+                    modifier = Modifier.padding(
+                        start = dimensionResource(R.dimen.padding_medium),
+                        top = dimensionResource(R.dimen.padding_small),
+                        end = dimensionResource(R.dimen.padding_medium),
+                        bottom = dimensionResource(R.dimen.padding_medium)
+                    )
+                )
+            }
         }
+    }
+}
+
+
+/**
+ * Cliickable Poster Composable
+ */
+@Composable
+fun MoviePlot(
+    @StringRes moviePlot: Int,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        modifier = modifier
+    ) {
+        Text(
+            text = stringResource(R.string.movie_plot),
+            style = MaterialTheme.typography.labelSmall,
+        )
+        Text(
+            text = stringResource(moviePlot),
+            style = MaterialTheme.typography.labelSmall
+        )
     }
 }
 
@@ -138,6 +192,8 @@ fun MovieItem(
 @Composable
 fun MoviePoster(
     @DrawableRes moviePoster: Int,
+    expanded: Boolean,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Image(
@@ -145,10 +201,10 @@ fun MoviePoster(
         contentDescription = null,
         modifier = Modifier
             .fillMaxWidth()
-            .height(218.dp),
+            .height(218.dp)
+            .clickable { onClick() },
         contentScale = ContentScale.FillBounds
     )
-
 }
 
 /**

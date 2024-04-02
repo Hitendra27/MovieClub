@@ -39,6 +39,6 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = Pacifico,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
+        fontSize = 18.sp
     )
 )
