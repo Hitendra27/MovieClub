@@ -235,7 +235,7 @@ fun MovieInformation(
 @Preview(showBackground = true)
 @Composable
 fun MovieClubAppPreview() {
-    MovieClubTheme(useDarkTheme = false) {
+    MovieClubTheme(darkTheme = false) {
         MovieClubApp()
     }
 }
@@ -243,7 +243,7 @@ fun MovieClubAppPreview() {
 @Preview
 @Composable
 fun MovieClubAppDarkThemePreview() {
-    MovieClubTheme(useDarkTheme = true) {
+    MovieClubTheme(darkTheme = true) {
         MovieClubApp()
     }
 }
